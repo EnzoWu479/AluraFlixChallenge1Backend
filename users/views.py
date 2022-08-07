@@ -4,9 +4,8 @@ from rest_framework.response import Response
 from rest_framework.exceptions import AuthenticationFailed
 from .models import User
 import jwt, datetime
-from rest_framework.decorators import permission_classes
+from .jwt import JWTAuth
 
-@permission_classes([])
 class RegisterView(APIView):
     def post(self, req):
         serializer = UserSerializer(data=req.data)
@@ -14,7 +13,7 @@ class RegisterView(APIView):
         serializer.save()
         return Response(serializer.data)
 
-@permission_classes([])
+
 class LoginView(APIView):
     def post(self, req):
         email=req.data['email']
@@ -40,6 +39,7 @@ class LoginView(APIView):
         return response
 
 class UserView(APIView):
+    authentication_classes = (JWTAuth,)
     def get(self, req):
         token = req.COOKIES.get('jwt')
         payload = jwt.decode(token, 'secret', algorithms=['HS256'])
