@@ -7,7 +7,7 @@ Esse projeto é o desafio 1 dos cursos da <a href="https://www.alura.com.br/chal
 * Django
 * Django Rest Framework
 * SQLite - Banco de dados Relacional
-* Authenticação por Token JWT
+* Autenticação por Token JWT
 ##
 <img alt="interface.gif" height="500" src="interfaceAluraFlix.gif"/>
 
